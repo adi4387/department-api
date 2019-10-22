@@ -21,7 +21,7 @@ public class DepartmentService {
     }
 
     public Department getDepartments(Integer id) {
-        return departmentRepository.findOne(id);
+        return departmentRepository.findById(id).get();
     }
 
 	public Department addDepartments(Department department) {

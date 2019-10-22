@@ -1,0 +1,2 @@
+docker network create department-mysql
+docker container run --name mysqldb --network department-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=department_db -d mysql:8
