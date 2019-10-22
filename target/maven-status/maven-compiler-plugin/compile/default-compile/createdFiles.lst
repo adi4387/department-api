@@ -1,5 +1,0 @@
-com\ps\dept\dto\Department.class
-com\ps\dept\repository\DepartmentRepository.class
-com\ps\dept\service\DepartmentService.class
-com\ps\dept\DepartmentApi.class
-com\ps\dept\api\DepartmentController.class
