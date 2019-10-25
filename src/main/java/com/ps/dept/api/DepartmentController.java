@@ -2,6 +2,7 @@ package com.ps.dept.api;
 
 import java.util.List;
 
+import com.ps.dept.util.GlobalProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,14 @@ public class DepartmentController {
 
 	@Autowired
 	DepartmentService departmentService;
+
+	@Autowired
+	GlobalProperties globalProperties;
+
+	@GetMapping("/email-id")
+	public String getEmailId() {
+		return globalProperties.email;
+	}
 
 	@GetMapping("/")
 	public List<Department> getDepartments() {

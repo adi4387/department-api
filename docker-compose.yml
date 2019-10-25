@@ -1,0 +1,19 @@
+version: "3"
+services:
+  mysqldb:
+      image: mysql:5
+      ports:
+        - "3306:3306"
+        - "33060:33060"
+      environment:
+        MYSQL_DATABASE: department_db
+        MYSQL_ROOT_PASSWORD: root
+  department-api:
+    image: department-api-v1
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb/department_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8085:8080"
+

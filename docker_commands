@@ -1,2 +1,51 @@
-docker network create department-mysql
-docker container run --name mysqldb --network department-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=department_db -d mysql:8
+docker build . -t departement-api
+
+docker images
+
+create network:
+    docker network create department-mysql
+
+run mysql:
+    docker container run --name mysqldb --network department-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=department_db -d mysql:5
+    docker container exec -it mysqldb bash
+    mysql -uroot -proot
+
+create tag:
+    docker tag department-api_v1 adityakumarsingh88/department-api_v1
+
+run application:
+    docker run -p 8080:8080 tagname
+
+version: "3"
+services:
+  department-api:
+    image: department-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb/department_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    restart: always
+    depends_on:
+      - mysqldb
+    ports:
+      - "8080:8080"
+  mysqldb:
+    image: mysql:5
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: department_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - department_mysql
+
+volumes:
+  db-data:
+
+networks:
+  department_mysql
+

@@ -3,6 +3,7 @@ package com.ps.dept.service;
 import com.ps.dept.dto.Department;
 import com.ps.dept.repository.DepartmentRepository;
 
+import com.ps.dept.util.GlobalProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
